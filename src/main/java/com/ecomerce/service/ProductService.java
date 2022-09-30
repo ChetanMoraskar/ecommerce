@@ -1,4 +1,4 @@
-package com.test.ecomerce.service;
+package com.ecomerce.service;
 
 import java.util.List;
 
@@ -7,10 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.test.ecomerce.model.Category;
-import com.test.ecomerce.model.Product;
-import com.test.ecomerce.repository.CategoryRepository;
-import com.test.ecomerce.repository.ProductRepository;
+import com.ecomerce.model.Category;
+import com.ecomerce.model.Product;
+import com.ecomerce.repository.CategoryRepository;
+import com.ecomerce.repository.ProductRepository;
 
 @Service
 public class ProductService {

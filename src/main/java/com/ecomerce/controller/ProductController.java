@@ -1,4 +1,4 @@
-package com.test.ecomerce.controller;
+package com.ecomerce.controller;
 
 import java.util.List;
 
@@ -15,54 +15,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.ecomerce.model.Category;
-import com.test.ecomerce.service.CategoryService;
-
+import com.ecomerce.model.Product;
+import com.ecomerce.service.ProductService;
 
 @RestController
-@RequestMapping("/api/categories")
-public class CategoryController {
+@RequestMapping("/api/products")
+public class ProductController {
 
 	@Autowired
-	private CategoryService catService;
-
+	private ProductService productService;
 	
 	@GetMapping("")
-	public List<Category> getAllCategory(@RequestParam("page") Integer pageVal){
+	public List<Product> getAllProduct(@RequestParam("page") Integer pageVal){
 		if(pageVal <=0) {
 			return null;
 		}
 		Pageable page = PageRequest.of(pageVal-1, 5);
 		
-		return catService.findallCategoriesByPage(page);
+		return productService.getAllProductPage(page);
 		
 	}
 	
-	
 	@GetMapping("/all")
-	public List<Category> getAllCat(){
-		return catService.getAllCategories();
-		
+	public List<Product> getAllProducts(){
+		return productService.getAllProduct();
+	}
+	
+	
+	@GetMapping("/category/{id}")
+	public List<Product> getAllProducts(@PathVariable int id){
+		return productService.getByCatId(id);
 	}
 	
 	@PostMapping("/add")
-	public Category addCategory(@RequestBody Category category) {
-		return catService.addCategory(category);
+	public Product addProduct(@RequestBody Product product){
+		return productService.addProduct(product);
 	}
 	
-	@GetMapping("/{id}")
-	public Category findCategory(@PathVariable int id) {
-		return catService.getCategoryById(id);
-		
+	@GetMapping("/id")
+	public Product getById(@PathVariable int id){
+		return productService.getProductById(id);
 	}
 	
 	@PutMapping("/update")
-	public Category updateCategory(@RequestBody Category category) {
-		return catService.updateCategoryById(category);
+	public Product updateProduct(@RequestBody Product product){
+		return productService.updateById(product);
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public Category deleteCategory(@PathVariable int id) {
-		return catService.deleteById(id);
+	public Product deleteProduct(@PathVariable int id){
+	return productService.deleteById(id);	
 	}
 }

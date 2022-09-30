@@ -1,4 +1,4 @@
-package com.test.ecomerce.model;
+package com.ecomerce.model;
 
 import java.util.ArrayList;
 import java.util.List;

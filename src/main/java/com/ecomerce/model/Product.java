@@ -1,4 +1,4 @@
-package com.test.ecomerce.model;
+package com.ecomerce.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
