@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 public class Product {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
+	int id;		
 	
 	@Column
 	String pNumber;

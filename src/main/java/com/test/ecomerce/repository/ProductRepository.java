@@ -12,5 +12,5 @@ import com.test.ecomerce.model.Product;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 	List<Product> findByCategory(Category category);
-
+	
 }

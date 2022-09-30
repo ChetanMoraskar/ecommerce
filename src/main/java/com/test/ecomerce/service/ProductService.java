@@ -3,6 +3,8 @@ package com.test.ecomerce.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.test.ecomerce.model.Category;
@@ -18,6 +20,10 @@ public class ProductService {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	
+	
+	
 
 	// get all product
 	public List<Product> getAllProduct() {
@@ -40,6 +46,7 @@ public class ProductService {
 		return null;
 	}
 
+	//update by id
 	public Product updateById(Product product) {
 		Product product1 = productRepository.findById(product.getId()).get();
 		if (product1 != null) {
@@ -60,6 +67,7 @@ public class ProductService {
 		return null;
 	}
 	
+	
 	public List<Product> getByCatId(int id){
 		Category category = categoryRepository.findById(id).get();
 		if(category == null) {
@@ -70,6 +78,12 @@ public class ProductService {
 			return list;
 		}
 		return null;
+	}
+
+	public List<Product> getAllProductPage(Pageable page) {
+		Page<Product> pageRepo = productRepository.findAll(page);
+		List<Product> list = pageRepo.getContent();
+		return list;
 	}
 	
 	

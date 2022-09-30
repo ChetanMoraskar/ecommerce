@@ -3,6 +3,8 @@ package com.test.ecomerce.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.test.ecomerce.model.Category;
@@ -13,6 +15,16 @@ public class CategoryService {
 
 	@Autowired
 	private CategoryRepository categoryRepository;
+
+	
+	public List<Category> findallCategoriesByPage(Pageable pageable) {
+		Page<Category> pageCate = categoryRepository.findAll(pageable);	
+		List<Category> list = pageCate.getContent();
+		return list;
+		
+	}
+	
+	
 
 	// get all categories
 	public List<Category> getAllCategories() {
@@ -49,9 +61,16 @@ public class CategoryService {
 		Category category = categoryRepository.findById(id).get();
 		if (category != null) {
 			categoryRepository.deleteById(id);
-			
+
 			return category;
 		}
+		return null;
+	}
+
+
+
+	public List<Category> getAllCategoriesPage(org.springframework.data.domain.Pageable page) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
